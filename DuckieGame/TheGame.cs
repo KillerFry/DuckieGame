@@ -84,6 +84,31 @@ namespace DuckieGame
 
             player.Texture = Content.Load<Texture2D>("Character");
 
+            System.Drawing.Bitmap bitmap = MapGenerator.PerlinNoise.CreatePerlinNoise();
+            
+            int bufferSize = bitmap.Height * bitmap.Width;
+
+            System.Drawing.Imaging.BitmapData bData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, 512, 512), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            bufferSize = bData.Height * bData.Stride;
+
+            byte[] bytes = new byte[bufferSize];
+            int[] imgData = new int[bitmap.Height * bitmap.Width];
+
+            System.Runtime.InteropServices.Marshal.Copy(bData.Scan0, imgData, 0, 512 * 512);
+
+
+            System.IO.MemoryStream memoryStream = new System.IO.MemoryStream(bufferSize);
+            //System.IO.FileStream fs = new System.IO.FileStream("PerlinNoise.png", System.IO.FileMode.Create);
+            bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+            //memoryStream.Close();
+            Texture2D texture = new Texture2D(GraphicsDevice, 512, 512);
+
+            texture.SetData(imgData);
+            
+
+            player.Texture = texture;
+            player.Position = new Point(0, 0);
+
             SpriteTexture.Load(Content, "shipanimated", FramesPerSec, FramesPerSec);
             //shipPos = player.Position;
         }
