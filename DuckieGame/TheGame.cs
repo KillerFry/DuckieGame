@@ -106,7 +106,7 @@ namespace DuckieGame
             texture.SetData(imgData);
             
 
-            player.Texture = texture;
+            //player.Texture = texture;
             player.Position = new Point(0, 0);
 
             SpriteTexture.Load(Content, "shipanimated", FramesPerSec, FramesPerSec);

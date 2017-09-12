@@ -18,7 +18,10 @@ namespace DuckieGame.Level
 
         public void CreateMap()
         {
-            Map = DrunkCaveGenerator.GenerateMap(width: 80, height: 80, floorPercentage: 45, byHand: false);
+            MapGenerator.Map map = new MapGenerator.Map(128, 128);
+            MapGenerator.BSP.BSPGenerator.GenerateMap(128, 128, map);
+            Map = map.TheGrid;
+            //Map = DrunkCaveGenerator.GenerateMap(width: 80, height: 80, floorPercentage: 45, byHand: false);
         }
 
         public void UpdateMap(int di)
