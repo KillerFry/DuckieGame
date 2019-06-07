@@ -47,8 +47,8 @@ namespace DuckieGame
         {
             // TODO: Add your initialization logic here
 
-            graphics.PreferredBackBufferHeight = 1040;
-            graphics.PreferredBackBufferWidth = 1040;
+            graphics.PreferredBackBufferHeight = 1360;
+            graphics.PreferredBackBufferWidth = 1360;
             graphics.ApplyChanges();
             this.IsMouseVisible = true;
 
